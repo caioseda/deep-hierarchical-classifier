@@ -132,3 +132,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+.DS_Store
+.dhc.pth
+dataset/cifar-100-python/cifar-100-python.tar.gz
+dataset/pickle_files/file.txt~
