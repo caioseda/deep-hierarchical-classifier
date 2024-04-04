@@ -1,0 +1,12 @@
+name: deep-learning
+channels:
+  - defaults
+  - conda-forge
+  - pytorch
+dependencies:
+  - pytorch==1.13
+  - torchvision==0.14
+  - numpy
+  - matplotlib
+  - seaborn
+  - imageio
