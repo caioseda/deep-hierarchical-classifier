@@ -1,5 +1,4 @@
 
-cifar-
 dataset/images/**
 dataset/pickle_files/train
 dataset/pickle_files/test
