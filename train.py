@@ -7,6 +7,7 @@ import torch
 from torch.utils.data import DataLoader
 from torch.optim import Adam
 from torchvision import transforms
+import time
 
 from level_dict import hierarchy
 from runtime_args import args
@@ -19,7 +20,7 @@ from plot import plot_loss_acc
 
 if __name__ == '__main__':
     if torch.cuda.is_available() and args.device == 'gpu':
-        available_device = "cuda:0" 
+        available_device = "cuda" 
     elif torch.backends.mps.is_available() and args.device == 'gpu':
         available_device = "mps" 
     else:
@@ -42,12 +43,11 @@ if __name__ == '__main__':
     test_generator = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=args.no_shuffle, num_workers=args.num_workers)
 
     model = resnet50.ResNet50()
+    model = torch.nn.DataParallel(model)
     optimizer = Adam(model.parameters(), lr=args.learning_rate)
 
     model = model.to(device)
     HLN = HierarchicalLossNetwork(metafile_path=args.metafile, hierarchical_labels=hierarchy, device=device)
-
-
 
     train_epoch_loss = []
     train_epoch_superclass_accuracy = []
@@ -56,9 +56,10 @@ if __name__ == '__main__':
     test_epoch_loss = []
     test_epoch_superclass_accuracy = []
     test_epoch_subclass_accuracy = []
-
+    epoch_time_elapsed = []
+    
     for epoch_idx in range(args.epoch):
-
+        since = time.time()
         i = 0
 
         epoch_loss = []
@@ -120,7 +121,9 @@ if __name__ == '__main__':
                 epoch_superclass_accuracy.append(calculate_accuracy(predictions=prediction[0], labels=batch_y1))
                 epoch_subclass_accuracy.append(calculate_accuracy(predictions=prediction[1], labels=batch_y2))
 
+        time_elapsed = time.time() - since
 
+        epoch_time_elapsed.append(time_elapsed)
         test_epoch_loss.append(sum(epoch_loss)/(j+1))
         test_epoch_superclass_accuracy.append(sum(epoch_superclass_accuracy)/(j+1))
         test_epoch_subclass_accuracy.append(sum(epoch_subclass_accuracy)/(j+1))
@@ -134,6 +137,7 @@ if __name__ == '__main__':
         print(f'Testing Loss at epoch {epoch_idx} : {sum(epoch_loss)/(j+1)}')
         print(f'Testing Superclass accuracy at epoch {epoch_idx} : {sum(epoch_superclass_accuracy)/(j+1)}')
         print(f'Testing Subclass accuracy at epoch {epoch_idx} : {sum(epoch_subclass_accuracy)/(j+1)}')
+        print(f'Time Elapsed: {time_elapsed // 60}m {time_elapsed % 60}s')
         print('-------------------------------------------------------------------------------------------')
 
         torch.save(model.state_dict(), args.model_save_path.rstrip('/')+'dhc.pth')
