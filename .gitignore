@@ -1,5 +1,5 @@
 
-
+cifar-
 dataset/images/**
 dataset/pickle_files/train
 dataset/pickle_files/test
@@ -138,3 +138,5 @@ dmypy.json
 .dhc.pth
 dataset/cifar-100-python/cifar-100-python.tar.gz
 dataset/pickle_files/file.txt~
+dataset/cifar-100-python.tar.gz
+dataset/train.csv
