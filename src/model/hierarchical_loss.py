@@ -4,7 +4,7 @@
 import pickle
 import torch
 import torch.nn as nn
-from helper import read_meta
+from src.utils.helper import read_meta
 
 
 class HierarchicalLossNetwork:

@@ -7,8 +7,8 @@ import csv
 import cv2
 from PIL import Image
 from torch.utils.data import Dataset
-from level_dict import hierarchy
-from helper import read_meta
+from src.utils.level_dict import hierarchy
+from src.utils.helper import read_meta
 
 
 class LoadDataset(Dataset):

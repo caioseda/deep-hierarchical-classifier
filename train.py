@@ -9,13 +9,13 @@ from torch.optim import Adam
 from torchvision import transforms
 import time
 
-from level_dict import hierarchy
-from runtime_args import args
-from load_dataset import LoadDataset
-from model import resnet50
-from model.hierarchical_loss import HierarchicalLossNetwork
-from helper import calculate_accuracy
-from plot import plot_loss_acc
+from src.utils.level_dict import hierarchy
+from src.utils.runtime_args import args
+from src.utils.load_dataset import LoadDataset
+from src.model import resnet50
+from src.model.hierarchical_loss import HierarchicalLossNetwork
+from src.utils.helper import calculate_accuracy
+from src.visualization.plot import plot_loss_acc
 
 
 if __name__ == '__main__':

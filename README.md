@@ -21,7 +21,7 @@ To know more about the arguments that can be supplied to the train file, run
 </div>
 <div align="center">
  <figure class="image">
-  <img src="readme_images/architecture.png"><br />
+  <img src="images/readme_images/architecture.png"><br />
   <figcaption> Image Source : https://arxiv.org/pdf/2005.06692.pdf </figcaption>
 </figure>
 </div>
@@ -38,7 +38,7 @@ As mentioned earlier, the DHC model was tested on Cifar-100 dataset. Figures bel
 
 <div align="center">
  <figure class="image">
-  <img src="readme_images/loss_epoch.png"><br />
+  <img src="images/readme_images/loss_epoch.png"><br />
   <figcaption> Loss of the model over 100 epochs. </figcaption>
 </figure>
 </div>
@@ -46,7 +46,7 @@ As mentioned earlier, the DHC model was tested on Cifar-100 dataset. Figures bel
 
 <div align="center">
  <figure class="image">
-  <img src="readme_images/accuracy_superclass_epoch.png"><br />
+  <img src="images/readme_images/accuracy_superclass_epoch.png"><br />
   <figcaption> Accuracy of the model on the superclass level over 100 epochs. </figcaption>
 </figure>
 </div>
@@ -54,7 +54,7 @@ As mentioned earlier, the DHC model was tested on Cifar-100 dataset. Figures bel
 
 <div align="center">
  <figure class="image">
-  <img src="readme_images/accuracy_subclass_epoch.png"><br />
+  <img src="images/readme_images/accuracy_subclass_epoch.png"><br />
   <figcaption> Accuracy of the model on the subclass level over 100 epochs. </figcaption>
 </figure>
 </div>
@@ -66,7 +66,7 @@ Therefore, it is crucial to know if this proposed DHC algorithm does any trade-o
 
 <div align="center">
  <figure class="image">
-  <img src="readme_images/resnet_accuracy_epoch.png"><br />
+  <img src="images/readme_images/resnet_accuracy_epoch.png"><br />
   <figcaption> Accuracy of ResNet-50 with CBAM on the subclass level over 100 epochs. </figcaption>
 </figure>
 </div>
