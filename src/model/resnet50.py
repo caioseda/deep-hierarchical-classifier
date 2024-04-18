@@ -77,8 +77,8 @@ class ResNet50(nn.Module):
         self.layer4 = self.make_layer(out_channels=512, num_blocks=self.num_blocks[3], stride=2, use_cbam=use_cbam)
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
 
-        self.linear_lvl1 = nn.Linear(512*self.expansion, num_classes[0])
-        self.linear_lvl2 = nn.Linear(512*self.expansion, num_classes[1])
+        self.linear_lvl1 = nn.Linear(512*self.expansion, num_classes[0], bias=False)
+        self.linear_lvl2 = nn.Linear(512*self.expansion, num_classes[1], bias=False)
 
         self.softmax_reg1 = nn.Linear(num_classes[0], num_classes[0])
         self.softmax_reg2 = nn.Linear(num_classes[0]+num_classes[1], num_classes[1])
@@ -110,7 +110,5 @@ class ResNet50(nn.Module):
 
         level_1 = self.softmax_reg1(self.linear_lvl1(x))
         level_2 = self.softmax_reg2(torch.cat((level_1, self.linear_lvl2(x)), dim=1))
-
-
 
         return level_1, level_2
